@@ -28,10 +28,11 @@ void main() {
   const String testCityName = 'New York';
   test('should get current weather detail from the repository', () async {
     // arrange
-    when().thenAnswer((_) async => const Right(testWeatherdetail));
+    when(mockWeatherRepository.getCurrentWeather(testCityName) as Function())
+        .thenAnswer((_) async => const Right(testWeatherdetail));
 
     // act
-    final result = await getCurrentWeather.execute(testCityName);
+    final result = getCurrentWeather.execute(testCityName);
 
     // assert
     expect(result, const Right(testWeatherdetail));
