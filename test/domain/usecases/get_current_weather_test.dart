@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
 import 'package:weather_app_test/domain/entities/weather_entity.dart';
 import 'package:weather_app_test/domain/usecases/get_current_weather.dart';
 
@@ -28,11 +28,11 @@ void main() {
   const String testCityName = 'New York';
   test('should get current weather detail from the repository', () async {
     // arrange
-    when(mockWeatherRepository.getCurrentWeather(testCityName) as Function())
+    when(mockWeatherRepository.getCurrentWeather(testCityName))
         .thenAnswer((_) async => const Right(testWeatherdetail));
 
     // act
-    final result = getCurrentWeather.execute(testCityName);
+    final result = await getCurrentWeather.execute(testCityName);
 
     // assert
     expect(result, const Right(testWeatherdetail));
