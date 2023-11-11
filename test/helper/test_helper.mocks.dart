@@ -4,8 +4,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
-import 'dart:convert' as _i10;
-import 'dart:typed_data' as _i11;
+import 'dart:convert' as _i11;
+import 'dart:typed_data' as _i12;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i4;
@@ -17,6 +17,8 @@ import 'package:weather_app_test/data/models/weather_model.dart' as _i3;
 import 'package:weather_app_test/domain/entities/weather_entity.dart' as _i8;
 import 'package:weather_app_test/domain/repositories/weather_repository.dart'
     as _i5;
+import 'package:weather_app_test/domain/usecases/get_current_weather.dart'
+    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -124,6 +126,34 @@ class MockWeatherRemoteDataSource extends _i1.Mock
       ) as _i6.Future<_i3.WeatherModel>);
 }
 
+/// A class which mocks [GetCurrentWeather].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentWeather extends _i1.Mock implements _i10.GetCurrentWeather {
+  MockGetCurrentWeather() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, _i8.WeatherEntity>> execute(
+          String? cityName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [cityName],
+        ),
+        returnValue:
+            _i6.Future<_i2.Either<_i7.Failure, _i8.WeatherEntity>>.value(
+                _FakeEither_0<_i7.Failure, _i8.WeatherEntity>(
+          this,
+          Invocation.method(
+            #execute,
+            [cityName],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i8.WeatherEntity>>);
+}
+
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -179,7 +209,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i10.Encoding? encoding,
+    _i11.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -210,7 +240,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i10.Encoding? encoding,
+    _i11.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -241,7 +271,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i10.Encoding? encoding,
+    _i11.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -272,7 +302,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i10.Encoding? encoding,
+    _i11.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -313,7 +343,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
       ) as _i6.Future<String>);
 
   @override
-  _i6.Future<_i11.Uint8List> readBytes(
+  _i6.Future<_i12.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -323,8 +353,8 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i6.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
-      ) as _i6.Future<_i11.Uint8List>);
+        returnValue: _i6.Future<_i12.Uint8List>.value(_i12.Uint8List(0)),
+      ) as _i6.Future<_i12.Uint8List>);
 
   @override
   _i6.Future<_i4.StreamedResponse> send(_i4.BaseRequest? request) =>
